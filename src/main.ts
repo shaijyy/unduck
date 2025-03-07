@@ -1,6 +1,5 @@
 import { bangs } from "./bang";
 import "./global.css";
-import Swal from "sweetalert2";
 
 function noSearchDefaultPageRender() {
   const app = document.querySelector<HTMLDivElement>("#app")!;
@@ -47,36 +46,6 @@ function noSearchDefaultPageRender() {
       copyIcon.src = "/clipboard.svg";
     }, 2000);
   });
-}
-
-const changeDefaultBang = async () => {
-const { value: bang } = await Swal.fire({
-  title: "Change Default Bang",
-  input: "text",
-  inputLabel: "Change the Default Bang used when no bangs are used. (e.g., !g for Google Search, or !? for DuckDuckGo.)",
-  inputValue: "!g",
-  showCancelButton: true,
-  inputValidator: (value) => {
-    const bangRegex = /^!.+/;
-    if(!value){
-      return "Cannot leave blank."
-    } else if (!bangRegex.test(value)) {
-      return "You have to specify a bang to use."
-    }
-  }
-});
-  if(bang){
-    const bangRegex = /^!(.+)$/;
-    const match = bang.match(bangRegex);
-    if (match){
-      localStorage.setItem('default-bang', match[1])
-      Swal.fire({
-        title: "Change Default Bang Successful!",
-        text: `Successfully changed the default bang to ${bang}.`,
-        icon: "success"
-      });
-    }
-  }
 }
 
 const LS_DEFAULT_BANG = localStorage.getItem("default-bang") ?? "g";
