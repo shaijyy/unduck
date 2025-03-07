@@ -153,7 +153,7 @@ svg path {
   stroke-dasharray: 2863.878662109375;
   stroke-dashoffset: 2863.878662109375;
   animation:
-    logo_stroke_anim 10s linear forwards,
+    logo_stroke_anim 3.5s linear forwards,
     logo_fill_anim 0.5s ease-in-out forwards 0.1s;
 }
 
