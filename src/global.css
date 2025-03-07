@@ -148,3 +148,26 @@ textarea {
 .footer a:hover {
   color: #333;
 }
+
+svg path {
+  stroke-dasharray: 2863.878662109375;
+  stroke-dashoffset: 2863.878662109375;
+  animation:
+    logo_stroke_anim 10s linear forwards,
+    logo_fill_anim 0.5s ease-in-out forwards 0.1s;
+}
+
+@keyframes logo_stroke_anim {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes logo_fill_anim {
+  from {
+    fill: rgba(255, 255, 255, 0);
+  }
+  to {
+    fill: black;
+  }
+}
