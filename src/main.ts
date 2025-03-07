@@ -29,7 +29,7 @@ function noSearchDefaultPageRender() {
         •
         <a href="https://github.com/t3dotgg/unduck" target="_blank">source code</a>
         •
-        <a href="mailto:unduckhelp@duck.com" target="_blank">suggest a !bang</a>
+        <a href="#defaultbang" target="_blank">change default !bang</a>
       </footer>
     </div>
   `;
