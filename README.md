@@ -1,7 +1,9 @@
-# Unduck
-
-DuckDuckGo's bang redirects are too slow. Add the following URL as a custom search engine to your browser. Enables all of DuckDuckGo's bangs to work, but much faster.
-
+![Unduck Logo](/public/unduck.png#gh-light-mode-only)
+![Unduck Logo](/public/unduck-white.png#gh-dark-mode-only)
+---
+DuckDuckGo's bang redirects are too slow. We fix them.  
+Add the following URL as a custom search engine to your browser.  
+Enables all of DuckDuckGo's bangs to work, but much faster.  
 ```
 https://unduck.link?q=%s
 ```
