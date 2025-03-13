@@ -64,7 +64,7 @@ function noSearchDefaultPageRender() {
   saveButton.addEventListener("click", async () => {
     // Use regex to transform the input value
     const inputValue = bangInput.value;
-    const transformedValue = inputValue.replace(/^!?(.)$/, (match, char) => {
+    const transformedValue = inputValue.replace(/^!?(.*)$/, (match, char) => {
       return match.charAt(0) === '!' ? char : char.toLowerCase();
     });
     
