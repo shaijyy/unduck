@@ -86,7 +86,7 @@ function noSearchDefaultPageRender() {
     }
   });
 
-  const changeDefaultBang = () => {
+  const changeDefaultBang = (): void => {
     if (bangContainer) {
       bangContainer.classList.toggle("hidden");
     }
