@@ -87,10 +87,13 @@ textarea {
 
 /* Default Bang Stuff */
 .bang-container {
+  position: absolute;
   display: flex;
   align-items: center;
   gap: 8px;
-  transform: translateY(15vh);
+  top: 15vh;
+  left: 0;
+  right: 0;
 }
 
 /* Add this new style */
