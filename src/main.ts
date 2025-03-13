@@ -65,6 +65,11 @@ function noSearchDefaultPageRender() {
   const bangContainer = app.querySelector<HTMLDivElement>(".bang-container")!;
   const bangToggle = app.querySelector<HTMLAnchorElement>(".bang-toggle")!;
   const currentBang = app.querySelector<HTMLParagraphElement>(".current-bang")!;
+
+  const findBang = (bangt: string): string | undefined => {
+    const foundBang = bangs.find(bang => bang.t === bangt);
+    return foundBang ? foundBang.s : undefined;
+  };
   
   const saveInputValue = () => {
     const inputValue = bangInput.value;
@@ -73,7 +78,9 @@ function noSearchDefaultPageRender() {
     });
 
     localStorage.setItem('default-bang', transformedValue);
-  
+
+    currentBang.innerHTML = `Current Default Bang: !${defaultBang} (${findBang(defaultBang)})`;
+    
     saveIcon.src = "/floppy-check.svg";
 
     setTimeout(() => {
@@ -86,15 +93,11 @@ function noSearchDefaultPageRender() {
   bangInput.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
       saveInputValue();
+      currentBang.innerHTML = `Current Default Bang: !${defaultBang} (${findBang(defaultBang)})`;
       event.preventDefault();
     }
   });
 
-  const findBang = (bangt: string): string | undefined => {
-    const foundBang = bangs.find(bang => bang.t === bangt);
-    return foundBang ? foundBang.s : undefined;
-  };
-  
   bangToggle.addEventListener("click", (event) => {
     if (bangContainer) {
       event.preventDefault();
