@@ -24,7 +24,6 @@ function noSearchDefaultPageRender() {
           </button>
         </div>
         <p style="margin-top: 25px;">When search queries are being sent but no Bangs were used, We will use a default bang. You can always change the default bang by clicking on the button in the footer.</p>
-        <h2 class="no-bang-error">No such bang exists.</h2>
         <div class="bang-container hidden">
           <input 
             type="text" 
@@ -66,7 +65,6 @@ function noSearchDefaultPageRender() {
   const bangContainer = app.querySelector<HTMLDivElement>(".bang-container")!;
   const bangToggle = app.querySelector<HTMLAnchorElement>(".bang-toggle")!;
   const currentBang = app.querySelector<HTMLParagraphElement>(".current-bang")!;
-  const noBang = app.querySelector<HTMLHeadingElement>(".no-bang-error")!;
   
   const saveInputValue = () => {
     const inputValue = bangInput.value;
@@ -74,19 +72,7 @@ function noSearchDefaultPageRender() {
       return match.charAt(0) === '!' ? chars : chars.toLowerCase();
     });
 
-    const isBangReal = (bangt: string): boolean => {
-      const foundBang = bangs.find(bang => bang.t === bangt);
-      return foundBang !== undefined;
-    };
-
-    if (isBangReal(transformedValue)) {
-      localStorage.setItem('key', transformedValue);
-    } else {
-      noBang.classList.remove("hidden");
-      setTimeout(() => {
-        noBang.classList.add("hidden")
-      }, 2000);
-    }
+    localStorage.setItem('key', transformedValue);
   
     saveIcon.src = "/floppy-check.svg";
 
@@ -104,15 +90,10 @@ function noSearchDefaultPageRender() {
     }
   });
 
-  const findBang = (bangt: string) => {
-    return bangs.find(bang => bang.t === bangt);
-  };
-  
   bangToggle.addEventListener("click", (event) => {
     if (bangContainer) {
       event.preventDefault();
-      bangName = findBang(transformedValue);
-      currentBang.innerHTML = `Current Default Bang: !${transformedValue} (${bangName})`;
+      currentBang.innerHTML = "Current Default Bang: !G (Google)";
       bangContainer.classList.toggle("hidden");
     }
   });
