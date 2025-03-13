@@ -79,6 +79,7 @@ function noSearchDefaultPageRender() {
 
     localStorage.setItem('default-bang', transformedValue);
 
+    defaultBang = localStorage.getItem("default-bang") || "g";
     currentBang.innerHTML = `Current Default Bang: !${defaultBang} (${findBang(defaultBang)})`;
     
     saveIcon.src = "/floppy-check.svg";
@@ -93,6 +94,7 @@ function noSearchDefaultPageRender() {
   bangInput.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
       saveInputValue();
+      defaultBang = localStorage.getItem("default-bang") || "g";
       currentBang.innerHTML = `Current Default Bang: !${defaultBang} (${findBang(defaultBang)})`;
       event.preventDefault();
     }
