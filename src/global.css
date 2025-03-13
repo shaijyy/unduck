@@ -85,6 +85,14 @@ textarea {
   margin-top: 16px;
 }
 
+/* Default Bang Stuff */
+.bang-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+}
+
 /* Add this new style */
 .content-container {
   max-width: 36rem;
@@ -125,6 +133,42 @@ textarea {
 }
 
 .copy-button.copied {
+  background: #28a745;
+}
+
+/* Default Bang Stuff */
+.bang-input {
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  width: 100%;
+  background: #f0f0f0;
+}
+
+.save-button {
+  padding: 8px;
+  color: #666;
+  border-radius: 4px;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.save-button:hover {
+  background: #f0f0f0;
+}
+
+.save-button:active {
+  background: #e5e5e5;
+}
+
+.save-button img {
+  width: 20px;
+  height: 20px;
+}
+
+.save-button.copied {
   background: #28a745;
 }
 
