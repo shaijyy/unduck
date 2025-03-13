@@ -131,6 +131,11 @@ function noSearchDefaultPageRender() {
 const LS_DEFAULT_BANG = localStorage.getItem("default-bang");
 const defaultBang = bangs.find((b) => b.t === LS_DEFAULT_BANG);
 
+const bangToHomepage = (bangt: string) => {
+  const foundBang = bangs.find(bang => bang.t === bangt);
+  return foundBang ? foundBang.d : undefined;
+}
+
 function getBangredirectUrl() {
   const url = new URL(window.location.href);
   const query = url.searchParams.get("q")?.trim() ?? "";
@@ -147,6 +152,11 @@ function getBangredirectUrl() {
   // Remove the first bang from the query
   const cleanQuery = query.replace(/!\S+\s*/i, "").trim();
 
+  // Thank God
+  if (bangCandidate && cleanQuery === "") {
+    window.location.replace(bangToHomepage(bangCandidate));
+  }
+  
   // Format of the url is:
   // https://www.google.com/search?q={{{s}}}
   const searchUrl = selectedBang?.u.replace(
