@@ -89,6 +89,14 @@ function noSearchDefaultPageRender() {
 
     if (findBang(transformedValue)) {
       localStorage.setItem('default-bang', transformedValue);
+      const bangt = localStorage.getItem("default-bang") || "g";
+      currentBang.innerHTML = `Current Default Bang: !${bangt} (${findBang(bangt)})`;
+    
+      saveIcon.src = "/floppy-check.svg";
+
+      setTimeout(() => {
+        saveIcon.src = "/floppy.svg";
+      }, 2000);
     } else {
       bangError.classList.remove("hidden");
       setTimeout(() => {
@@ -96,14 +104,7 @@ function noSearchDefaultPageRender() {
       }, 2000);
     }
 
-    const bangt = localStorage.getItem("default-bang") || "g";
-    currentBang.innerHTML = `Current Default Bang: !${bangt} (${findBang(bangt)})`;
     
-    saveIcon.src = "/floppy-check.svg";
-
-    setTimeout(() => {
-      saveIcon.src = "/floppy.svg";
-    }, 2000);
   };
 
   saveButton.addEventListener("click", saveInputValue);
