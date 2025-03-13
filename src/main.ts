@@ -5,7 +5,7 @@ function noSearchDefaultPageRender() {
   if (!localStorage.getItem("default-bang")) {
     localStorage.setItem("default-bang", "g")
   } else {
-    return
+    localStorage.setItem("default-bang", localStorage.getItem("default-bang"));
   }
   const app = document.querySelector<HTMLDivElement>("#app")!;
   const instanceDomain = `${window.location.protocol}//${window.location.hostname}`; // Get the full domain with protocol (https://www.example.com)
