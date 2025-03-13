@@ -90,7 +90,7 @@ textarea {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 64px;
+  margin-top: 25%;
 }
 
 /* Add this new style */
@@ -170,6 +170,12 @@ textarea {
 
 .save-button.copied {
   background: #28a745;
+}
+
+.hidden {
+  display: none;
+  opacity: 0;
+  visibility: hidden;
 }
 
 /* Add footer styles */
