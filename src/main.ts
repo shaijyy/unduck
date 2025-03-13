@@ -23,6 +23,16 @@ function noSearchDefaultPageRender() {
             <img src="/clipboard.svg" alt="Copy" />
           </button>
         </div>
+        <div class="bang-container"> 
+          <input 
+            type="text" 
+            class="bang-input"
+            placeholder="e.g., !g for Google, !? for DuckDuckGo."
+          />
+          <button class="save-button">
+            <img src="/floppy.svg" alt="Save" />
+          </button>
+        </div>
       </div>
       <footer class="footer">
         <a href="https://x.com/theo" target="_blank">theo</a>
@@ -44,6 +54,29 @@ function noSearchDefaultPageRender() {
 
     setTimeout(() => {
       copyIcon.src = "/clipboard.svg";
+    }, 2000);
+  });
+
+  const saveButton = app.querySelector<HTMLButtonElement>(".save-button")!;
+  const saveIcon = saveButton.querySelector("img")!;
+  const bangInput = app.querySelector<HTMLInputElement>(".bang-input")!;
+  
+  saveButton.addEventListener("click", async () => {
+    // Use regex to transform the input value
+    const inputValue = bangInput.value;
+    const transformedValue = inputValue.replace(/^!?(.)$/, (match, char) => {
+      return match.charAt(0) === '!' ? char : char.toLowerCase();
+    });
+    
+    // Save the transformed value to localStorage
+    localStorage.setItem("default-bang", transformedValue);
+    
+    // Change the save icon to indicate success
+    saveIcon.src = "/floppy-check.svg";
+
+    // Reset the icon back after 2 seconds
+    setTimeout(() => {
+      saveIcon.src = "/floppy.svg";
     }, 2000);
   });
 }
