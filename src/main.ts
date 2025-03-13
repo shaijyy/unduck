@@ -97,7 +97,7 @@ function noSearchDefaultPageRender() {
   bangToggle.addEventListener("click", (event) => {
     if (bangContainer) {
       event.preventDefault();
-      const defaultBang = localStorage.getItem("default-bang") ?? "g";
+      const defaultBang = localStorage.getItem("default-bang") || "g";
       currentBang.innerHTML = `Current Default Bang: !${defaultBang} (${findBangName(defaultBang)})`;
       bangContainer.classList.toggle("hidden");
     }
