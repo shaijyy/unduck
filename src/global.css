@@ -90,7 +90,7 @@ textarea {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding-top: 25%;
+  transform: translateY(25vh);
 }
 
 /* Add this new style */
