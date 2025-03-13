@@ -46,6 +46,8 @@ function noSearchDefaultPageRender() {
     </div>
   `;
 
+  localStorage.setItem("default-bang", "g");
+  
   const copyButton = app.querySelector<HTMLButtonElement>(".copy-button")!;
   const copyIcon = copyButton.querySelector("img")!;
   const urlInput = app.querySelector<HTMLInputElement>(".url-input")!;
@@ -72,7 +74,7 @@ function noSearchDefaultPageRender() {
       return match.charAt(0) === '!' ? chars : chars.toLowerCase();
     });
 
-    localStorage.setItem('key', transformedValue);
+    localStorage.setItem('default-bang', transformedValue);
   
     saveIcon.src = "/floppy-check.svg";
 
@@ -97,7 +99,7 @@ function noSearchDefaultPageRender() {
   bangToggle.addEventListener("click", (event) => {
     if (bangContainer) {
       event.preventDefault();
-      currentBang.innerHTML = `Current Default Bang: !${transformedValue} (${findBangName(transformedValue)})`;
+      currentBang.innerHTML = `Current Default Bang: !${localStorage.getItem("default-bang")} (${findBangName(localStorage.getItem("default-bang"))})`;
       bangContainer.classList.toggle("hidden");
     }
   });
