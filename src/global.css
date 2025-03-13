@@ -90,7 +90,8 @@ textarea {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 15vh;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 /* Add this new style */
