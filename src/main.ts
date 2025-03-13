@@ -23,7 +23,7 @@ function noSearchDefaultPageRender() {
             <img src="/clipboard.svg" alt="Copy" />
           </button>
         </div>
-        <p style="margin-top: 15px;">When search queries are being sent but no Bangs were used, We will use a default bang.</p>
+        <p style="margin-top: 25px;">When search queries are being sent but no Bangs were used, We will use a default bang. You can always change the default bang by clicking on the button in the footer.</p>
         <div class="bang-container hidden">
           <input 
             type="text" 
@@ -35,7 +35,6 @@ function noSearchDefaultPageRender() {
           </button>
         </div>
         <p class="current-bang">Current Default Bang: !G (Google)</p>
-        <p>You can always change the default bang by clicking on the button in the footer.</p>
       </div>
       <footer class="footer">
         <a href="https://x.com/theo" target="_blank">theo</a>
