@@ -61,6 +61,7 @@ function noSearchDefaultPageRender() {
   const saveIcon = saveButton.querySelector("img")!;
   const bangInput = app.querySelector<HTMLInputElement>(".bang-input")!;
   const bangContainer = app.querySelector<HTMLDivElement>(".bang-container")!;
+  const bangToggle = app.querySelector<HTMLAnchorElement>(".bang-toggle")!;
   
   const saveInputValue = () => {
     const inputValue = bangInput.value;
@@ -86,11 +87,11 @@ function noSearchDefaultPageRender() {
     }
   });
 
-  const changeDefaultBang = (): void => {
+  bangToggle.addEventListener("click", (event) => {
     if (bangContainer) {
       bangContainer.classList.toggle("hidden");
     }
-  };
+  });
 }
 
 const LS_DEFAULT_BANG = localStorage.getItem("default-bang") ?? "g";
