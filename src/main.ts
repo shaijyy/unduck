@@ -2,7 +2,6 @@ import { bangs } from "./bang";
 import "./global.css";
 
 function noSearchDefaultPageRender() {
-  localStorage.setItem("default-bang", "g");
   const app = document.querySelector<HTMLDivElement>("#app")!;
   const instanceDomain = `${window.location.protocol}//${window.location.hostname}`; // Get the full domain with protocol (https://www.example.com)
   app.innerHTML = `
@@ -98,7 +97,8 @@ function noSearchDefaultPageRender() {
   bangToggle.addEventListener("click", (event) => {
     if (bangContainer) {
       event.preventDefault();
-      currentBang.innerHTML = `Current Default Bang: !${localStorage.getItem("default-bang")} (${findBangName(localStorage.getItem("default-bang"))})`;
+      const defaultBang = localStorage.getItem("default-bang") ?? "g";
+      currentBang.innerHTML = `Current Default Bang: !${defaultBang} (${findBangName(defaultBang)})`;
       bangContainer.classList.toggle("hidden");
     }
   });
