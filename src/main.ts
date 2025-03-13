@@ -154,7 +154,7 @@ function getBangredirectUrl() {
 
   // Thank God
   if (bangCandidate && cleanQuery === "") {
-    window.location.replace(bangToHomepage(bangCandidate));
+    return bangToHomepage(bangCandidate);
   }
   
   // Format of the url is:
