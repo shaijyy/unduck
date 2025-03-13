@@ -89,6 +89,7 @@ function noSearchDefaultPageRender() {
 
   bangToggle.addEventListener("click", (event) => {
     if (bangContainer) {
+      event.preventDefault();
       bangContainer.classList.toggle("hidden");
     }
   });
