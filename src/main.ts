@@ -155,7 +155,7 @@ function getBangredirectUrl() {
   // Thank God
   if (bangCandidate && cleanQuery === "") {
     const searchUrl = `https://${bangToHomepage(bangCandidate)}/`;
-    console.log(searchUrl);
+    window.location.replace(searchUrl);
   }
   
   // Format of the url is:
