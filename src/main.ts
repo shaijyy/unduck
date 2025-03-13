@@ -2,7 +2,9 @@ import { bangs } from "./bang";
 import "./global.css";
 
 function noSearchDefaultPageRender() {
-  localStorage.setItem('default-bang', "g");
+  if (localStorage.getItem("default-bang") === null) {
+    localStorage.setItem("default-bang", "g")
+  }
   const app = document.querySelector<HTMLDivElement>("#app")!;
   const instanceDomain = `${window.location.protocol}//${window.location.hostname}`; // Get the full domain with protocol (https://www.example.com)
   app.innerHTML = `
