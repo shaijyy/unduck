@@ -154,7 +154,8 @@ function getBangredirectUrl() {
 
   // Thank God
   if (bangCandidate && cleanQuery === "") {
-    return bangToHomepage(bangCandidate);
+    searchUrl = bangToHomepage(bangCandidate);
+    return searchUrl
   }
   
   // Format of the url is:
