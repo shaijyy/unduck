@@ -60,24 +60,29 @@ function noSearchDefaultPageRender() {
   const saveButton = app.querySelector<HTMLButtonElement>(".save-button")!;
   const saveIcon = saveButton.querySelector("img")!;
   const bangInput = app.querySelector<HTMLInputElement>(".bang-input")!;
-  
-  saveButton.addEventListener("click", async () => {
-    // Use regex to transform the input value
+
+  const saveInputValue = () => {
     const inputValue = bangInput.value;
-    const transformedValue = inputValue.replace(/^!?(.*)$/, (match, char) => {
-      return match.charAt(0) === '!' ? char : char.toLowerCase();
+    const transformedValue = inputValue.replace(/^!?(.*)$/, (match, chars) => {
+      return match.charAt(0) === '!' ? chars : chars.toLowerCase();
     });
-    
-    // Save the transformed value to localStorage
-    localStorage.setItem("default-bang", transformedValue);
-    
-    // Change the save icon to indicate success
+
+    localStorage.setItem('key', transformedValue);
+  
     saveIcon.src = "/floppy-check.svg";
 
-    // Reset the icon back after 2 seconds
     setTimeout(() => {
       saveIcon.src = "/floppy.svg";
     }, 2000);
+  };
+
+  saveButton.addEventListener("click", saveInputValue);
+
+  bangInput.addEventListener("keydown", (event) => {
+    if (event.key === "Enter") {
+      saveInputValue();
+      event.preventDefault();
+    }
   });
 }
 
