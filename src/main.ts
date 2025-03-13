@@ -23,7 +23,7 @@ function noSearchDefaultPageRender() {
             <img src="/clipboard.svg" alt="Copy" />
           </button>
         </div>
-        <p>When search queries are being sent but no Bangs were used, We will use a default bang.</p>
+        <p style="margin-top: 15px;">When search queries are being sent but no Bangs were used, We will use a default bang.</p>
         <div class="bang-container hidden">
           <input 
             type="text" 
