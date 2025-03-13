@@ -58,7 +58,7 @@ h6 {
   line-height: 1.2;
 }
 
-h2 .error {
+.error {
   color: red;
   font-size: 2em;
 }
