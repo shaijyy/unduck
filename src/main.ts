@@ -90,15 +90,16 @@ function noSearchDefaultPageRender() {
     }
   });
 
-  const findBangName = (bangt: string) => {
-    return bangs.find(bang => bang.t === bangt);
+  const findBang = (bangt: string): string | undefined => {
+    const foundBang = bangs.find(bang => bang.t === bangt);
+    return foundBang ? foundBang.s : undefined;
   };
   
   bangToggle.addEventListener("click", (event) => {
     if (bangContainer) {
       event.preventDefault();
       const defaultBang = localStorage.getItem("default-bang") || "g";
-      currentBang.innerHTML = `Current Default Bang: !${defaultBang} (${findBangName(defaultBang)})`;
+      currentBang.innerHTML = `Current Default Bang: !${defaultBang} (${findBang(defaultBang)})`;
       bangContainer.classList.toggle("hidden");
     }
   });
