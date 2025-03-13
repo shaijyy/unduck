@@ -23,7 +23,7 @@ function noSearchDefaultPageRender() {
             <img src="/clipboard.svg" alt="Copy" />
           </button>
         </div>
-        <div class="bang-container"> 
+        <div class="bang-container hidden"> 
           <input 
             type="text" 
             class="bang-input"
@@ -39,7 +39,7 @@ function noSearchDefaultPageRender() {
         •
         <a href="https://github.com/t3dotgg/unduck" target="_blank">source code</a>
         •
-        <a href="#" onClick="changeDefaultBang()">change default !bang</a>
+        <a href="#" onClick="changeDefaultBang()" class="bang-toggle">change default !bang</a>
       </footer>
     </div>
   `;
@@ -60,7 +60,8 @@ function noSearchDefaultPageRender() {
   const saveButton = app.querySelector<HTMLButtonElement>(".save-button")!;
   const saveIcon = saveButton.querySelector("img")!;
   const bangInput = app.querySelector<HTMLInputElement>(".bang-input")!;
-
+  const bangContainer = app.querySelector<HTMLDivElement>(".bang-container")!;
+  
   const saveInputValue = () => {
     const inputValue = bangInput.value;
     const transformedValue = inputValue.replace(/^!?(.*)$/, (match, chars) => {
@@ -84,6 +85,12 @@ function noSearchDefaultPageRender() {
       event.preventDefault();
     }
   });
+
+  const changeDefaultBang = () => {
+    if (bangContainer) {
+      bangContainer.classList.toggle("hidden");
+    }
+  };
 }
 
 const LS_DEFAULT_BANG = localStorage.getItem("default-bang") ?? "g";
