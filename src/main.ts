@@ -2,6 +2,7 @@ import { bangs } from "./bang";
 import "./global.css";
 
 function noSearchDefaultPageRender() {
+  localStorage.setItem("default-bang", "g");
   const app = document.querySelector<HTMLDivElement>("#app")!;
   const instanceDomain = `${window.location.protocol}//${window.location.hostname}`; // Get the full domain with protocol (https://www.example.com)
   app.innerHTML = `
@@ -45,8 +46,6 @@ function noSearchDefaultPageRender() {
       </footer>
     </div>
   `;
-
-  localStorage.setItem("default-bang", "g");
   
   const copyButton = app.querySelector<HTMLButtonElement>(".copy-button")!;
   const copyIcon = copyButton.querySelector("img")!;
