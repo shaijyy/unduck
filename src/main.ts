@@ -29,6 +29,7 @@ function noSearchDefaultPageRender() {
           </button>
         </div>
         <p style="margin-top: 25px;">When search queries are being sent but no Bangs were used, We will use a default bang. You can always change the default bang by clicking on the button in the footer.</p>
+        <h2 class="error hidden">Bang not found.</h2>
         <div class="bang-container hidden">
           <input 
             type="text" 
@@ -70,6 +71,7 @@ function noSearchDefaultPageRender() {
   const bangContainer = app.querySelector<HTMLDivElement>(".bang-container")!;
   const bangToggle = app.querySelector<HTMLAnchorElement>(".bang-toggle")!;
   const currentBang = app.querySelector<HTMLParagraphElement>(".current-bang")!;
+  const bangError = app.querySelector<HTMLHeadingElement>(".error")!;
 
   const findBang = (bangt: string): string | undefined => {
     const foundBang = bangs.find(bang => bang.t === bangt);
@@ -85,7 +87,14 @@ function noSearchDefaultPageRender() {
       return match.charAt(0) === '!' ? chars : chars.toLowerCase();
     });
 
-    localStorage.setItem('default-bang', transformedValue);
+    if (findBang(transformedValue)) {
+      localStorage.setItem('default-bang', transformedValue);
+    } else {
+      bangError.classList.remove("hidden");
+      setTimeout(() => {
+        bangError.classList.add("hidden");
+      }, 2000);
+    }
 
     const bangt = localStorage.getItem("default-bang") || "g";
     currentBang.innerHTML = `Current Default Bang: !${bangt} (${findBang(bangt)})`;
