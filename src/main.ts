@@ -24,6 +24,7 @@ function noSearchDefaultPageRender() {
           </button>
         </div>
         <div class="bang-container hidden"> 
+          <p>When search queries are being sent but no Bangs were used, We will use a default bang.</p>
           <input 
             type="text" 
             class="bang-input"
@@ -32,6 +33,7 @@ function noSearchDefaultPageRender() {
           <button class="save-button">
             <img src="/floppy.svg" alt="Save" />
           </button>
+          <p class="current-bang">Current Default Bang: !G (Google)</p>
         </div>
       </div>
       <footer class="footer">
@@ -62,6 +64,7 @@ function noSearchDefaultPageRender() {
   const bangInput = app.querySelector<HTMLInputElement>(".bang-input")!;
   const bangContainer = app.querySelector<HTMLDivElement>(".bang-container")!;
   const bangToggle = app.querySelector<HTMLAnchorElement>(".bang-toggle")!;
+  const currentBang = app.querySelector<HTMLParagraphElement>(".current-bang")!;
   
   const saveInputValue = () => {
     const inputValue = bangInput.value;
@@ -90,6 +93,7 @@ function noSearchDefaultPageRender() {
   bangToggle.addEventListener("click", (event) => {
     if (bangContainer) {
       event.preventDefault();
+      currentBang.innerHTML = "Current Default Bang: !G (Google)";
       bangContainer.classList.toggle("hidden");
     }
   });
