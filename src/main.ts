@@ -90,10 +90,14 @@ function noSearchDefaultPageRender() {
     }
   });
 
+  const findBangName = (bangt: string) => {
+    return bangs.find(bang => bang.t === bangt);
+  };
+  
   bangToggle.addEventListener("click", (event) => {
     if (bangContainer) {
       event.preventDefault();
-      currentBang.innerHTML = "Current Default Bang: !G (Google)";
+      currentBang.innerHTML = `Current Default Bang: !${transformedValue} (${findBangName(transformedValue)})`;
       bangContainer.classList.toggle("hidden");
     }
   });
