@@ -2,6 +2,7 @@ import { bangs } from "./bang";
 import "./global.css";
 
 function noSearchDefaultPageRender() {
+  localStorage.setItem('default-bang', "g");
   const app = document.querySelector<HTMLDivElement>("#app")!;
   const instanceDomain = `${window.location.protocol}//${window.location.hostname}`; // Get the full domain with protocol (https://www.example.com)
   app.innerHTML = `
@@ -70,6 +71,9 @@ function noSearchDefaultPageRender() {
     const foundBang = bangs.find(bang => bang.t === bangt);
     return foundBang ? foundBang.s : undefined;
   };
+
+  const bangt = localStorage.getItem("default-bang") || "g";
+  currentBang.innerHTML = `Current Default Bang: !${bangt} (${findBang(bangt)})`;
   
   const saveInputValue = () => {
     const inputValue = bangInput.value;
@@ -79,8 +83,8 @@ function noSearchDefaultPageRender() {
 
     localStorage.setItem('default-bang', transformedValue);
 
-    const defaultBang = localStorage.getItem("default-bang") || "g";
-    currentBang.innerHTML = `Current Default Bang: !${defaultBang} (${findBang(defaultBang)})`;
+    const bangt = localStorage.getItem("default-bang") || "g";
+    currentBang.innerHTML = `Current Default Bang: !${bangt} (${findBang(bangt)})`;
     
     saveIcon.src = "/floppy-check.svg";
 
@@ -94,8 +98,8 @@ function noSearchDefaultPageRender() {
   bangInput.addEventListener("keydown", (event) => {
     if (event.key === "Enter") {
       saveInputValue();
-      const defaultBang = localStorage.getItem("default-bang") || "g";
-      currentBang.innerHTML = `Current Default Bang: !${defaultBang} (${findBang(defaultBang)})`;
+      const bangt = localStorage.getItem("default-bang") || "g";
+      currentBang.innerHTML = `Current Default Bang: !${bangt} (${findBang(bangt)})`;
       event.preventDefault();
     }
   });
@@ -103,8 +107,8 @@ function noSearchDefaultPageRender() {
   bangToggle.addEventListener("click", (event) => {
     if (bangContainer) {
       event.preventDefault();
-      const defaultBang = localStorage.getItem("default-bang") || "g";
-      currentBang.innerHTML = `Current Default Bang: !${defaultBang} (${findBang(defaultBang)})`;
+      const bangt = localStorage.getItem("default-bang") || "g";
+      currentBang.innerHTML = `Current Default Bang: !${bangt} (${findBang(bangt)})`;
       bangContainer.classList.toggle("hidden");
     }
   });
