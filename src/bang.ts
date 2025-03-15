@@ -2,6 +2,15 @@
 
 export const bangs = [
   {
+    c: "Tech",
+    d: "grep.app",
+    r: 0,
+    s: "Grep.app",
+    sc: "Programming",
+    t: "grep",
+    u: "https://grep.app/search?q={{{s}}}",
+  },
+  {
     c: "Online Services",
     d: "quacky-gamma.vercel.app",
     r: 0,
