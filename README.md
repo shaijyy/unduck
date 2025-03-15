@@ -19,7 +19,7 @@ Also, it is not completely broken. (*cough* *cough* Google *cough*)
 
 ## How is this any better than DuckDuckGo or the original Unduck?
 
-Couple of stuff:
+Couple of reasons:
  - Faster ⚡
  - Looks better 💄
  - Choose a default bang (Enables default search for over 13,000 websites) 🙌
