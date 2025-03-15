@@ -43,7 +43,7 @@ export const bangs = [
     r: 0,
     s: "I am feeling Quacky!",
     sc: "Convenience",
-    t: "qu",
+    t: "quack",
     u: "https://quacky-gamma.vercel.app/{{{s}}}}",
   },
   {
