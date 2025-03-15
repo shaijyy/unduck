@@ -31,5 +31,5 @@ Couple of stuff:
 ## We care about you. Big Companies don't.
 
 Feel free to email me over at [shaijyy@duck.com](mailto:shaijyy@duck.com) for anything you want 🙂  
-I do have school though, but I would answer and take care of your requests ASAP ❤️
+I do have school though, but I would answer and take care of your requests ASAP ❤️  
 I'd be happy to add more Bangs and features over time. 🧑‍💻
