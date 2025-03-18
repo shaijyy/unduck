@@ -150,10 +150,7 @@ function getBangredirectUrl() {
   const selectedBang = bangs.find((b) => b.t === bangCandidate) ?? defaultBang;
 
   if (!localStorage.getItem("default-bang")) {
-    const selectedBang = bangs.find((b) => b.t === bangCandidate) ?? "g";
     localStorage.setItem("default-bang", "g");
-  } else {
-    console.log("No default bang found. Will use Google");
   }
 
   // Remove the first bang from the query
@@ -179,7 +176,9 @@ function getBangredirectUrl() {
 
 function doRedirect() {
   const searchUrl = getBangredirectUrl();
-  if (!searchUrl) return;
+  if (!searchUrl) {
+    noSearchDefaultPageRender();
+  }
   window.location.replace(searchUrl);
 }
 
