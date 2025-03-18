@@ -178,8 +178,10 @@ function doRedirect() {
   const searchUrl = getBangredirectUrl();
   if (!searchUrl) {
     noSearchDefaultPageRender();
+    return null;
+  } else {
+    window.location.replace(searchUrl);
   }
-  window.location.replace(searchUrl);
 }
 
 // maybe fix?
