@@ -176,4 +176,11 @@ function doRedirect() {
   window.location.replace(searchUrl);
 }
 
+// maybe fix?
+if (!localStorage.getItem("default-bang")) {
+    localStorage.setItem("default-bang", "g")
+  } else {
+    console.log(localStorage.getItem("default-bang"));
+}
+
 doRedirect();
