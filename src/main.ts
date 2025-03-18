@@ -137,13 +137,6 @@ const bangToHomepage = (bangt: string) => {
 }
 
 function getBangredirectUrl() {
-  // Let's see if it will work now.
-  if (!localStorage.getItem("default-bang")) {
-    localStorage.setItem("default-bang", "g")
-  } else {
-    console.log(localStorage.getItem("default-bang"));
-  }
-  
   const url = new URL(window.location.href);
   const query = url.searchParams.get("q")?.trim() ?? "";
   if (!query) {
@@ -155,6 +148,13 @@ function getBangredirectUrl() {
 
   const bangCandidate = match?.[1]?.toLowerCase();
   const selectedBang = bangs.find((b) => b.t === bangCandidate) ?? defaultBang;
+
+  if (!localStorage.getItem("default-bang")) {
+    const selectedBang = bangs.find((b) => b.t === bangCandidate) ?? "g";
+    localStorage.setItem("default-bang", "g");
+  } else {
+    console.log("No default bang found. Will use Google");
+  }
 
   // Remove the first bang from the query
   const cleanQuery = query.replace(/!\S+\s*/i, "").trim();
