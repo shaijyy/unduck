@@ -137,6 +137,13 @@ const bangToHomepage = (bangt: string) => {
 }
 
 function getBangredirectUrl() {
+  // Let's see if it will work now.
+  if (!localStorage.getItem("default-bang")) {
+    localStorage.setItem("default-bang", "g")
+  } else {
+    console.log(localStorage.getItem("default-bang"));
+  }
+  
   const url = new URL(window.location.href);
   const query = url.searchParams.get("q")?.trim() ?? "";
   if (!query) {
