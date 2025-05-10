@@ -171,7 +171,7 @@ function getBangredirectUrl() {
   );
   if (!searchUrl) return null;
 
-  if (query && (bangCandidate == null || bangCandidate === false || bangCandidate === 0 || bangCandidate === "no" || bangCandidate === "" || !bangCandidate)) {
+if (query && (!bangCandidate || bangCandidate === "no" || bangCandidate === null)) {
     const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
     return googleSearchUrl;
 }
