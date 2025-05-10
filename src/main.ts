@@ -139,43 +139,47 @@ const bangToHomepage = (bangt: string) => {
 function getBangredirectUrl() {
   const url = new URL(window.location.href);
   const query = url.searchParams.get("q")?.trim() ?? "";
+  
+  // If no query, render the default page
   if (!query) {
     noSearchDefaultPageRender();
     return null;
   }
 
   const match = query.match(/!(\S+)/i);
-
   const bangCandidate = match?.[1]?.toLowerCase();
-  const selectedBang = bangs.find((b) => b.t === bangCandidate) ?? defaultBang;
-
+  
+  // Set default bang if not already set
   if (!localStorage.getItem("default-bang")) {
     localStorage.setItem("default-bang", "g");
   }
 
+  const selectedBang = bangs.find((b) => b.t === bangCandidate) ?? bangs.find(b => b.t === localStorage.getItem("default-bang"));
+
   // Remove the first bang from the query
   const cleanQuery = query.replace(/!\S+\s*/i, "").trim();
 
-  // Thank God
+  // If bangCandidate is provided and cleanQuery is empty, redirect to the homepage of the bang
   if (bangCandidate && cleanQuery === "") {
     const searchUrl = `https://${bangToHomepage(bangCandidate)}/`;
     return searchUrl;
   }
-  
-  // Format of the url is:
-  // https://www.google.com/search?q={{{s}}}
+
+  // Format the search URL
   const searchUrl = selectedBang?.u.replace(
     "{{{s}}}",
-    // Replace %2F with / to fix formats like "!ghr+t3dotgg/unduck"
     encodeURIComponent(cleanQuery).replace(/%2F/g, "/")
   );
+
+  // If no search URL is found, return null
   if (!searchUrl) return null;
 
-if (query && (!bangCandidate || bangCandidate === "no" || bangCandidate === null)) {
+  // If no bangCandidate is provided, perform a Google search
+  if (!bangCandidate || bangCandidate === "no") {
     const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
     return googleSearchUrl;
-}
-  
+  }
+
   return searchUrl;
 }
 
