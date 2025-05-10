@@ -131,6 +131,11 @@ function noSearchDefaultPageRender() {
 const LS_DEFAULT_BANG = localStorage.getItem("default-bang");
 const defaultBang = bangs.find((b) => b.t === LS_DEFAULT_BANG);
 
+// I wonder why do you have to give me an error if I declared something and didn't use it.
+if (defaultBang) {
+  console.log(`Default bang found: ${defaultBang.s}`);
+}
+
 const bangToHomepage = (bangt: string) => {
   const foundBang = bangs.find(bang => bang.t === bangt);
   return foundBang ? foundBang.d : undefined;
