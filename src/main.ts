@@ -171,6 +171,11 @@ function getBangredirectUrl() {
   );
   if (!searchUrl) return null;
 
+  if (query && !bangCandidate) {
+    const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+    return googleSearchUrl;
+  }
+  
   return searchUrl;
 }
 
