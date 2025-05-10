@@ -171,10 +171,10 @@ function getBangredirectUrl() {
   );
   if (!searchUrl) return null;
 
-  if (query && !bangCandidate) {
+  if (query && (bangCandidate == null || bangCandidate === false || bangCandidate === 0 || bangCandidate === "no" || bangCandidate === "" || !bangCandidate)) {
     const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
     return googleSearchUrl;
-  }
+}
   
   return searchUrl;
 }
