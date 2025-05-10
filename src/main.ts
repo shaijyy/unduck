@@ -182,6 +182,7 @@ function getBangredirectUrl() {
   // If no bangCandidate is provided, perform a Google search
   if (!bangCandidate || bangCandidate === "no") {
     const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
+    console.log(googleSearchUrl);
     return googleSearchUrl;
   }
 
@@ -190,6 +191,7 @@ function getBangredirectUrl() {
 
 function doRedirect() {
   const searchUrl = getBangredirectUrl();
+  console.log(searchUrl)
   if (!searchUrl) {
     noSearchDefaultPageRender();
     return null;
