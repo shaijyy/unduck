@@ -128,14 +128,6 @@ function noSearchDefaultPageRender() {
   });
 }
 
-const LS_DEFAULT_BANG = localStorage.getItem("default-bang");
-const defaultBang = bangs.find((b) => b.t === LS_DEFAULT_BANG);
-
-// I wonder why do you have to give me an error if I declared something and didn't use it.
-if (defaultBang) {
-  console.log(`Default bang found: ${defaultBang.s}`);
-}
-
 const bangToHomepage = (bangt: string) => {
   const foundBang = bangs.find(bang => bang.t === bangt);
   return foundBang ? foundBang.d : undefined;
@@ -143,50 +135,73 @@ const bangToHomepage = (bangt: string) => {
 
 function getBangredirectUrl() {
   const url = new URL(window.location.href);
-  const query = url.searchParams.get("q")?.trim() ?? "";
-  
-  // If no query, render the default page
-  if (!query) {
+  const originalQuery = url.searchParams.get("q")?.trim() ?? "";
+
+  if (!originalQuery) {
     noSearchDefaultPageRender();
     return null;
   }
 
-  const match = query.match(/!(\S+)/i);
-  const bangCandidate = match?.[1]?.toLowerCase();
-  
-  // Set default bang if not already set
   if (!localStorage.getItem("default-bang")) {
-    localStorage.setItem("default-bang", "g");
+    localStorage.setItem("default-bang", "g"); // Default to Google if not set
+  }
+  const defaultBangTicker = localStorage.getItem("default-bang")!;
+
+  // Regex to capture: 1=bang, 2=rest of query (optional)
+  const bangRegex = /^!(\S+)(?:\s+(.*))?$/i;
+  const match = originalQuery.match(bangRegex);
+
+  let bangToUseTicker: string | undefined;
+  let queryForSearchEngine = originalQuery;
+
+  if (match) {
+    const typedBang = match[1].toLowerCase();
+    const queryAfterBang = match[2]?.trim() ?? "";
+
+    if (typedBang === "no") {
+      bangToUseTicker = defaultBangTicker;
+      queryForSearchEngine = queryAfterBang; // If just "!no", this will be ""
+    } else {
+      const foundTypedBang = bangs.find(b => b.t === typedBang);
+      if (foundTypedBang) {
+        bangToUseTicker = typedBang;
+        queryForSearchEngine = queryAfterBang;
+      } else {
+        // Invalid bang typed, use default bang with the original full query
+        bangToUseTicker = defaultBangTicker;
+        queryForSearchEngine = originalQuery;
+      }
+    }
+  } else {
+    // No bang pattern typed, use default bang
+    bangToUseTicker = defaultBangTicker;
+    queryForSearchEngine = originalQuery;
   }
 
-  const selectedBang = bangs.find((b) => b.t === bangCandidate) ?? bangs.find(b => b.t === localStorage.getItem("default-bang"));
+  const selectedBangObject = bangs.find(b => b.t === bangToUseTicker);
 
-  // Remove the first bang from the query
-  const cleanQuery = query.replace(/!\S+\s*/i, "").trim();
-
-  // If bangCandidate is provided and cleanQuery is empty, redirect to the homepage of the bang
-  if (bangCandidate && cleanQuery === "") {
-    const searchUrl = `https://${bangToHomepage(bangCandidate)}/`;
-    return searchUrl;
+  if (!selectedBangObject) {
+    // Fallback to Google if the determined bang ticker is somehow not found (e.g., corrupted storage or bangs.ts)
+    console.error(`Could not find bang object for ticker: ${bangToUseTicker}. Defaulting to Google with original query.`);
+    return `https://www.google.com/search?q=${encodeURIComponent(originalQuery)}`;
   }
 
-  // Format the search URL
-  const searchUrl = selectedBang?.u.replace(
-    "{{{s}}}",
-    encodeURIComponent(cleanQuery).replace(/%2F/g, "/")
-  );
-
-  // If no search URL is found, return null
-  if (!searchUrl) return null;
-
-  // If no bangCandidate is provided, perform a Google search
-  if (!bangCandidate || bangCandidate === "no") {
-    const googleSearchUrl = `https://www.google.com/search?q=${encodeURIComponent(query)}`;
-    console.log(googleSearchUrl);
-    return googleSearchUrl;
+  if (queryForSearchEngine === "") {
+    // No actual search term (e.g., user typed "!yt" or "!no", or default bang resolved to empty query)
+    // Redirect to the homepage of the selected bang
+    const homepageDomain = bangToHomepage(selectedBangObject.t);
+    if (homepageDomain) {
+      return `https://${homepageDomain}/`;
+    } else {
+      // Fallback if homepage isn't defined (shouldn't happen for valid bangs in bangs.ts)
+      console.error(`No homepage for bang ${selectedBangObject.t}. Defaulting to Google search for a space.`);
+      // As a last resort, search for the bang ticker itself on Google, or a space if ticker is problematic
+      return `https://www.google.com/search?q=${encodeURIComponent(selectedBangObject.t || " ")}`;
+    }
+  } else {
+    // We have a bang and a query for it
+    return selectedBangObject.u.replace("{{{s}}}", encodeURIComponent(queryForSearchEngine).replace(/%2F/g, "/"));
   }
-
-  return searchUrl;
 }
 
 function doRedirect() {
@@ -198,13 +213,6 @@ function doRedirect() {
   } else {
     window.location.replace(searchUrl);
   }
-}
-
-// maybe fix?
-if (!localStorage.getItem("default-bang")) {
-    localStorage.setItem("default-bang", "g")
-  } else {
-    console.log(localStorage.getItem("default-bang"));
 }
 
 doRedirect();
