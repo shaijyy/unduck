@@ -142,6 +142,21 @@ function getBangredirectUrl() {
     return null;
   }
 
+  // Check for "feeling ducky" feature
+  if (originalQuery.endsWith(" !")) {
+    const searchQuery = originalQuery.slice(0, -2).trim();
+    if (searchQuery) {
+      return `https://quacky-gamma.vercel.app/${encodeURIComponent(searchQuery)}`;
+    }
+    // If originalQuery was just " !" or "  !", let it fall through
+  } else if (originalQuery.startsWith("! ")) { // Added condition for "! query"
+    const searchQuery = originalQuery.slice(2).trim();
+    if (searchQuery) {
+      return `https://quacky-gamma.vercel.app/${encodeURIComponent(searchQuery)}`;
+    }
+    // If originalQuery was just "! " or "!  ", let it fall through
+  }
+
   if (!localStorage.getItem("default-bang")) {
     localStorage.setItem("default-bang", "g"); // Default to Google if not set
   }
