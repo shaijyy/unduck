@@ -7,15 +7,19 @@ Enables all of DuckDuckGo's bangs to work, but much faster.
 ```
 https://unduck-phi.vercel.app?q=%s
 ```
+## [Quacky](https://quacky-gamma.vercel.app) v2!
+Scrapes DuckDuckGo for the first result then redirect the user.  
+That simple.  
+Nothing personalized or sponsored. Pure Luck. (APIs)  
 
-## I am feeling [Quacky](https://quacky-gamma.vercel.app/)!
+**Whats new in v2?**
+ - Complete Rewrite to decrease chances of ratelimiting and other stuff.
+ - Added support to multiple bases (html and lite versions of DuckDuckGo)
+ - Better error handling and more detailed error messages.
 
-Google calls it "I am feeling Lucky".  
-DuckDuckGo calls it "Ducky".  
-You get the idea.  
-We scrape DuckDuckGo's results and redirect the user.  
-No data collected. Pure Luck (Algorithms).  
-Also, it is not completely broken. (*cough* *cough* Google *cough*)
+**What's to come in v3?**
+ - Better user interface
+ - More instances (to decrease chances of ratelimiting)
 
 ## How is this any better than DuckDuckGo or the original Unduck?
 
@@ -24,8 +28,7 @@ Couple of reasons:
  - Looks better 💄
  - Choose a default bang (Enables default search for over 13,000 websites) 🙌
  - Animations (Because it's Animations.) 📺
- - Why the f*ck did theo censor the Duck part in Unduck? (oooo wait i get it now) 🤬
- - No data collected. At all. 📅
+ - 0 Analytics. No data collected. 📅
  - i- it- it- its just better. pliz use 🥲
 
 ## We care about you. Big Companies don't.
