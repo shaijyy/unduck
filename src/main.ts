@@ -84,7 +84,7 @@ function noSearchDefaultPageRender() {
   }
 
   const bangt = localStorage.getItem("default-bang");
-  currentBang.innerHTML = `Current Default Bang: !${bangt} (${findBang(bangt)})`;
+  currentBang.innerHTML = `Current Default Bang: !${bangt} (${findBang(String(bangt))})`;
 
   const saveInputValue = () => {
     const inputValue = bangInput.value;
