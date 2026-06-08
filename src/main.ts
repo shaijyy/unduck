@@ -269,7 +269,7 @@ function getBangredirectUrl() {
                         el.textContent = "Closing in " + String(seconds) + "...";
                     } else {
                         clearInterval(timer);
-                        window.location.href = "${instanceDomain}";
+                        window.location.href = "https://${window.location.hostname}";
                     }
                 }, 1000);
             </script>
