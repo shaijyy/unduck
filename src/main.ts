@@ -41,7 +41,7 @@ function noSearchDefaultPageRender() {
             <img src="/floppy.svg" alt="Save" />
           </button>
         </div>
-        <p class="current-bang">Current Default Bang: !G (Google)</p>
+        <p class="current-bang">Current Default Bang: ! LOADING... </p>
       </div>
       <footer class="footer">
         <a href="https://github.com/shaijyy" target="_blank">shaijyy</a>
@@ -79,7 +79,11 @@ function noSearchDefaultPageRender() {
     return foundBang ? foundBang.s : undefined;
   };
 
-  const bangt = localStorage.getItem("default-bang") || "g";
+  if (!localStorage.getItem("default-bang")) {
+    localStorage.setItem("default-bang", "g"); // Default to Google if not set
+  }
+
+  const bangt = localStorage.getItem("default-bang");
   currentBang.innerHTML = `Current Default Bang: !${bangt} (${findBang(bangt)})`;
 
   const saveInputValue = () => {
@@ -159,9 +163,6 @@ function getBangredirectUrl() {
   //   // If originalQuery was just "! " or "!  ", let it fall through
   // }
 
-  if (!localStorage.getItem("default-bang")) {
-    localStorage.setItem("default-bang", "g"); // Default to Google if not set
-  }
   const defaultBangTicker = localStorage.getItem("default-bang")!;
 
   // Regex to capture: 1=bang, 2=rest of query (optional)
