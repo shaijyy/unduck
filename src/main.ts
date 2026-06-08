@@ -221,8 +221,8 @@ function getBangredirectUrl() {
     }
   } else {
     if (queryForSearchEngine === "_NEWDEF") {
-      if (!localStorage.getItem("default-bang")) {
-        localStorage.setItem("default-bang", selectedBangObject.t); // Default to Google if not set
+      if (localStorage.getItem("default-bang") != selectedBangObject.t) {
+        localStorage.setItem("default-bang", selectedBangObject.t);
       }
       const html = `
         <!DOCTYPE html>
