@@ -146,22 +146,23 @@ function getBangredirectUrl() {
   }
 
   // I AM SHUTTING DOWN QUACKY SINCE IT COSTS A LOT AND NO ONE USES IT (INCLUDING ME...)
+  // SO I AM GOING TO REDIRECT TO LUCKY.SURF INSTEAD
   //
-  // // Check for "feeling ducky" feature
-  // if (originalQuery.endsWith(" !")) {
-  //   const searchQuery = originalQuery.slice(0, -2).trim();
-  //   if (searchQuery) {
-  //     return `https://quacky-gamma.vercel.app/${encodeURIComponent(searchQuery)}`;
-  //   }
-  //   // If originalQuery was just " !" or "  !", let it fall through
-  // } else if (originalQuery.startsWith("! ")) {
-  //   // Added condition for "! query"
-  //   const searchQuery = originalQuery.slice(2).trim();
-  //   if (searchQuery) {
-  //     return `https://quacky-gamma.vercel.app/${encodeURIComponent(searchQuery)}`;
-  //   }
-  //   // If originalQuery was just "! " or "!  ", let it fall through
-  // }
+  // Check for "feeling ducky" feature
+  if (originalQuery.endsWith(" !")) {
+    const searchQuery = originalQuery.slice(0, -2).trim();
+    if (searchQuery) {
+      return `https://lucky.surf/${encodeURIComponent(searchQuery)}`;
+    }
+    // If originalQuery was just " !" or "  !", let it fall through
+  } else if (originalQuery.startsWith("! ")) {
+    // Added condition for "! query"
+    const searchQuery = originalQuery.slice(2).trim();
+    if (searchQuery) {
+      return `https://lucky.surf/${encodeURIComponent(searchQuery)}`;
+    }
+    // If originalQuery was just "! " or "!  ", let it fall through
+  }
 
   const defaultBangTicker = localStorage.getItem("default-bang")!;
 
