@@ -266,10 +266,10 @@ function getBangredirectUrl() {
                 const timer = setInterval(() => {
                     seconds--;
                     if (seconds > 0) {
-                        el.textContent = "Closing in" + String(seconds) + "...";
+                        el.textContent = "Closing in " + String(seconds) + "...";
                     } else {
                         clearInterval(timer);
-                        window.location.href = "/";
+                        window.location.href = "${instanceDomain}";
                     }
                 }, 1000);
             </script>
