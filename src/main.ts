@@ -250,13 +250,29 @@ function getBangredirectUrl() {
 
         p {
             font-size: 1.5rem;
-            color: #666;
+            color: #333;
         }
         </style>
         </head>
         <body>
             <h1>New Default Bang Set: !${selectedBangObject.t}</h1>
-            <p>You can safely close this window now.</p>
+
+            <p id="countdown">Closing in 5...</p>
+
+            <script>
+                let seconds = 5;
+                const el = document.getElementById("countdown");
+
+                const timer = setInterval(() => {
+                    seconds--;
+                    if (seconds > 0) {
+                        el.textContent = "Closing in" + String(seconds) + "...";
+                    } else {
+                        clearInterval(timer);
+                        window.location.href = "/";
+                    }
+                }, 1000);
+            </script>
         </body>
         </html>
       `;
