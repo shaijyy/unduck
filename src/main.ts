@@ -224,10 +224,45 @@ function getBangredirectUrl() {
       if (!localStorage.getItem("default-bang")) {
         localStorage.setItem("default-bang", selectedBangObject.t); // Default to Google if not set
       }
-      window.location.replace(
-        `data:text/html,%3C!DOCTYPE html%3E%0A%3Chtml%3E%0A%3Chead%3E%0A%3Cmeta charset%3D"utf-8"%3E%0A%3Ctitle%3EBang Set%3C%2Ftitle%3E%0A%3Cstyle%3E%0Abody %7B%0A%20%20%20 font-family%3A sans-serif%3B%0A%20%20%20 display%3A flex%3B%0A%20%20%20 flex-direction%3A column%3B%0A%20%20%20 justify-content%3A center%3B%0A%20%20%20 align-items%3A center%3B%0A%20%20%20 height%3A 100vh%3B%0A%20%20%20 margin%3A 0%3B%0A%20%20%20 text-align%3A center%3B%0A%7D%0A%0Ah1 %7B%0A%20%20%20 font-size%3A 4rem%3B%0A%20%20%20 margin-bottom%3A 20px%3B%0A%7D%0A%0Ap %7B%0A%20%20%20 font-size%3A 1.5rem%3B%0A%20%20%20 color%3A %23666%3B%0A%7D%0A%3C%2Fstyle%3E%0A%3C%2Fhead%3E%0A%3Cbody%3E%0A%20%20%20 %3Ch1%3ENew Default Bang Set%3A !${selectedBangObject.t}%3C%2Fh1%3E%0A%20%20%20 %3Cp%3EYou can safely close this window now.%3C%2Fp%3E%0A%3C%2Fbody%3E%0A%3C%2Fhtml%3E`,
-      );
-      return `data:text/html,%3C!DOCTYPE html%3E%0A%3Chtml%3E%0A%3Chead%3E%0A%3Cmeta charset%3D"utf-8"%3E%0A%3Ctitle%3EBang Set%3C%2Ftitle%3E%0A%3Cstyle%3E%0Abody %7B%0A%20%20%20 font-family%3A sans-serif%3B%0A%20%20%20 display%3A flex%3B%0A%20%20%20 flex-direction%3A column%3B%0A%20%20%20 justify-content%3A center%3B%0A%20%20%20 align-items%3A center%3B%0A%20%20%20 height%3A 100vh%3B%0A%20%20%20 margin%3A 0%3B%0A%20%20%20 text-align%3A center%3B%0A%7D%0A%0Ah1 %7B%0A%20%20%20 font-size%3A 4rem%3B%0A%20%20%20 margin-bottom%3A 20px%3B%0A%7D%0A%0Ap %7B%0A%20%20%20 font-size%3A 1.5rem%3B%0A%20%20%20 color%3A %23666%3B%0A%7D%0A%3C%2Fstyle%3E%0A%3C%2Fhead%3E%0A%3Cbody%3E%0A%20%20%20 %3Ch1%3ENew Default Bang Set%3A !${selectedBangObject.t}%3C%2Fh1%3E%0A%20%20%20 %3Cp%3EYou can safely close this window now.%3C%2Fp%3E%0A%3C%2Fbody%3E%0A%3C%2Fhtml%3E`;
+      const html = `
+        <!DOCTYPE html>
+        <html>
+        <head>
+        <meta charset="utf-8">
+        <title>Bang Set</title>
+        <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.5rem;
+            color: #666;
+        }
+        </style>
+        </head>
+        <body>
+            <h1>New Default Bang Set: !${selectedBangObject.t}</h1>
+            <p>You can safely close this window now.</p>
+        </body>
+        </html>
+      `;
+
+      const blob = new Blob([html], { type: "text/html" });
+      const bloburl = URL.createObjectURL(blob);
+      return bloburl;
     }
 
     // We have a bang and a query for it
